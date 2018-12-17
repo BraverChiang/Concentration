@@ -10,7 +10,8 @@ import Foundation
 
 
 protocol ConcentrationDelegate: class {
-    func startNewGame(_ game: Concentration)
+    func startNewGame(_ game: Concentration)//第一步
+    //func gameInit(numberOfPairsOfCards:Int,_ game: Concentration)
 }
 
 
@@ -80,25 +81,28 @@ class Concentration{
         }
     }
     
-    weak var guanjia: ConcentrationDelegate?
+    weak var guanjia: ConcentrationDelegate?//第二步
     
     
     // 🍎🍎游戏重置 // 🍋🍋 slack里面是有的.
     func resetGame(){
+        //第五步
         guanjia?.startNewGame(self) //应该在某处实例化一个guanjia
     }
     
     
-    //🍎🍎🍎卡牌初始化
+    //🍎🍎🍎卡牌初始化，
     init(numberOfPairsOfCards:Int) {//numberOfPairsOfCards卡片对数的数量
-        assert(numberOfPairsOfCards > 0,
+       //第五步
+        //delegate.gameInit(numberOfPairsOfCards: numberOfPairsOfCards, self)
+          assert(numberOfPairsOfCards > 0,
                "Concentration.init(\(numberOfPairsOfCards)) : You must have at least one pair of cards")//创建卡牌是必须一对一对的，要不然怎么匹配呢
         for _ in 1...numberOfPairsOfCards{
             let card = Card()
             cards += [card,card]
-            
+
         }
-//        cards.shuffle()
+        cards.shuffle()
     }
 }
 
